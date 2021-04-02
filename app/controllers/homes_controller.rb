@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
   def top
     @item = Item.first(4)
-    @tax = 1.08
+    @tax = 1.1
   end
   
   def about

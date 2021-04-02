@@ -1,0 +1,56 @@
+<div class="container">
+<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
+<%= flash[:success] %>
+ <div class="row">
+  <div>
+    <table class="table table-borderless">
+      <tr class="d-flex">
+        <th class="col-6">顧客ID</th>
+        <td class="col-6"><%= @customer.id %></td>
+      </tr>
+      <tr class="d-flex">
+        <th class="col-6">氏名</th>
+        <td class="col-6"><%= @customer.last_name %><%= @customer.first_name %></td>
+      </tr>
+      <tr class="d-flex">
+        <th class="col-6">フリガナ</th>
+        <td class="col-9"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+      </tr>
+      <tr class="d-flex">
+        <th class="col-6">郵便番号</th>
+        <td class="col-3"><%= @customer.postal_code %></td>
+      </tr>
+      <tr class="d-flex">
+        <th class="col-6">住所</th>
+        <td class="col-12"><%= @customer.address %></td>
+      </tr>
+      <tr class="d-flex"> 
+        <th class="col-6">電話番号</th>
+        <td class="col-12"><%= @customer.telephone_number %></td>
+      </tr>
+      <tr class="d-flex">
+        <th class="col-6">メールアドレス</th>
+        <td class="col-3"><%= @customer.email %></td>
+      </tr>
+      <tr class="d-flex">
+        <th class="col-6">会員ステータス</th>
+        <td class="col-3">
+          <% if @customer.is_active == true %>
+            <p class = "text-secondary">有効</p>
+          <% elsif @customer.is_active == false %>
+            <p class = "text-success">無効</p>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div style="padding: 20px;">
+  <%= link_to "編集する",edit_admins_customer_path(@customer), class: "btn btn-success" %>
+  </div>
+  <div style="padding: 20px;">
+  <%= link_to " 注文履歴一覧を見る", admins_orders_path, class: "btn btn-primary" %>
+  </div>
+</div>

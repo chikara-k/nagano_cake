@@ -1,0 +1,17 @@
+<div class = "container">
+<h2>商品新規登録</h2>
+  <div class = "row">
+    <div class="my-5">
+<%= form_with model:@item,url: admins_items_path,local:true do |f| %>
+    <table class="table table-borderless">
+      <tr class="d-flex">
+        <th class="col-6"><%= f.label :"商品画像" %></th>
+        <td class="col-6"><%= f.attachment_field :image, class:" image" %></td>
+      </tr>
+      <%= render "item_form", f: f %>
+    </table>
+    <%= f.submit "新規登録", class: "btn btn-success" %>
+<% end %>
+</div>
+</div>
+</div>

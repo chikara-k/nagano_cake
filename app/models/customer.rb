@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :cart_items, dependent: :destroy
-  has_many :address, dependent: :destroy
+  has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
          
   validates :first_name,        presence: true
@@ -19,15 +19,15 @@ class Customer < ApplicationRecord
   validates :is_active,         presence: true
 
 
-  def full_address
-    postal_code + address + first_name + last_name
-  end
+  # def full_address
+  #   postal_code + address + first_name + last_name
+  # end
 
-  def name
-    [first_name,last_name].join(' ')
-  end
+  # def name
+  #   [first_name,last_name].join(' ')
+  # end
 
-  def kana
-    [first_kana,last_kana].join(' ')
-  end
+  # def kana
+  #   [first_kana,last_kana].join(' ')
+  # end
 end

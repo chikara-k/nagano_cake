@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-     belongs_to :customer
+  belongs_to :customer
 
 # バリデーション
   validates :postal_code,     presence: true

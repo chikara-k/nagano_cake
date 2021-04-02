@@ -1,0 +1,10 @@
+<% if element.errors.any? %>
+  <div class = "error error-danger">
+    <h2>入力内容にエラーが<%= element.errors.count %>件あります。</h2>
+    <ul>
+      <% element.errors.full_messages.each do |message| %>
+        <li>error <%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
