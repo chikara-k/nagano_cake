@@ -24,7 +24,7 @@
             		<%= order.name %>
               </td>
               <td><%= order.name %></td>
-              <td><%= (order.total_price).to_i %>円</td>
+              <td><%= (order.total_payment).to_i %>円</td>
               <td><%= order.status %></td>
               <td><%= link_to "詳細", order_path(order.id), :class => "btn btn-primary" %></td>
             </tr>

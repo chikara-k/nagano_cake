@@ -70,12 +70,12 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @orders = Order.all
-    @order_item = @order.order_items
+    @order_item = @order.order_details
 
     # 商品合計の計算方法
     @item_total = 0
-    @order.order_items.each do |order_item|
-      @item_total += order_item.purchased_price * order_item.amount
+    @order.order_details.each do |order_detail|
+      @item_total += order_detail.price * order_detail.amount
     end
   end
 
