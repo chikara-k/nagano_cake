@@ -35,10 +35,10 @@
       <tr class="d-flex">
         <th class="col-6">会員ステータス</th>
         <td class="col-3">
-          <% if @customer.is_active == true %>
-            <p class = "text-secondary">有効</p>
-          <% elsif @customer.is_active == false %>
-            <p class = "text-success">無効</p>
+          <% if @customer.is_active == false %>
+            <p class = "text-secondary">無効</p>
+          <% elsif @customer.is_active == true %>
+            <p class = "text-success">有効</p>
           <% end %>
         </td>
       </tr>

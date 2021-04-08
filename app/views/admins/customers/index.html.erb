@@ -26,10 +26,10 @@
                 <%= customer.email %>
               </td>
               <td>
-                <% if customer.is_active == true %>
-                  <p class = "text-secondary">有効</p>
-                <% else %>
-                  <p class = "text-success">退会</p>
+                <% if customer.is_active == false %>
+                  <p class = "text-secondary">退会</p>
+                <% elsif customer.is_active  %>
+                  <p class = "text-success">有効</p>
                 <% end %>
               </td>
             </tr>

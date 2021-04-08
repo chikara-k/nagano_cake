@@ -1,2 +1,24 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-3" id="item-picture">
+      <%= attachment_image_tag(@item, :image, size: "200x200", fallback: "no_image.jpg") %>
+    </div>
+    <div class="col-5" id="item-profile">
+      <h4><%= @item.name %></h4>
+      <div id="item-introduction">
+        <%= @item.introduction %>
+      </div>
+      <h5 id="price-with-tax-in-profile">
+        ¥ <%= (@item.price * 1.1).to_i.to_s(:delimited) %><span id="with-tax">  (税込)</span>
+      </h5>
+      <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+        <%= f.select :amount, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.submit "カートに入れる", class: " btn btn-primary" %>
+      <% end %>
+    </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>

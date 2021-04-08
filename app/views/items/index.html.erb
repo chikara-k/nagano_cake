@@ -5,7 +5,7 @@
       <div id="items-space">
         <% @items.each do |item| %>
 	      <div class="item-presentation">
-	        <%= link_to public_item_path(item.id), :style=>"color:black;" do %>
+	        <%= link_to item_path(item.id), :style=>"color:black;" do %>
             <div class="item-picture">
               <%= attachment_image_tag(item, :image, size: "120x120", fallback: "no_image.jpg") %>
             </div>
@@ -13,7 +13,7 @@
               <%= item.name %>
             </p>
             <p class="item-price-with-tax">
-              ¥<%= (item.price * 1.08).to_i.to_s(:delimited) %>
+              ¥<%= (item.price * 1.1).to_i.to_s(:delimited) %>
             </p>
           <% end %>
         </div>

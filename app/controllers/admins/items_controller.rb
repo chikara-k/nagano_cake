@@ -13,6 +13,7 @@ class Admins::ItemsController < ApplicationController
           flash[:success] = "新商品を登録しました"
           redirect_to admins_items_path
         else
+          @items = Item.all.page(params[:page]).per(4)
           render :new
         end
       end
@@ -37,6 +38,6 @@ class Admins::ItemsController < ApplicationController
     
       private
       def item_params
-        params.require(:item).permit(:name, :detail, :genre_id, :is_sold, :price)
+        params.require(:item).permit(:name, :introduction, :genre_id, :is_active, :price)
       end
 end

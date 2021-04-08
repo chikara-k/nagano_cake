@@ -1,0 +1,67 @@
+<div class='container'>
+  <h3>注文情報確認画面</h3>
+    <div class='row'>
+     <div class='col-8 ml-3'>
+      <table class="table table-hover table-bordered">
+        <thead class="table-active">
+         <tr class="info">
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+         </tr>
+　　　   </thead>
+        <tbody>
+         <% @cart_items.each do |cart_item| %>
+          <tr>
+　　　      <td><%= cart_item.item.name %></td>
+           <td><%= (cart_item.item.price*1.1).to_i %></td>
+           <td><%= cart_item.amount %></td>
+               <% tax = 1.1 %>
+               <% @subtotal = (cart_item.item.price * tax * cart_item.amount).to_i %>
+           <td><%= @subtotal %></td>
+          </tr>
+         <% end %>
+        </tbody>
+      </table>
+     </div>
+     <div class="col-3">
+      <table class="table table-bordered">
+       <tbody>
+        <tr>
+         
+          <td class="table-secondary">送料</td><td>800</td>
+        </tr>
+        <tr>
+          <td class="table-secondary">商品合計</td><td><%= @item_total %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary">請求金額</td><td><%= @item_total + 800 %></td>
+        </tr>
+        </tbody>
+      </table>
+     </div>
+    </div>
+    <table class="table table-borderless">
+        <tr>
+            <th>
+              <strong class ="payment_method ">支払い方法</strong>
+            </th>
+            <td><%= @order.payment_method %></td>
+        </tr>
+        <tr>
+          <th>
+           <strong class ="payment_method">お届け先</strong>
+          </th>
+           <td><%= @order.address %></td>
+        </tr>
+    </table>
+    <%= form_with model: @order, url:orders_path do |f| %>
+          <%= f.hidden_field :name %>
+          <%= f.hidden_field :address %>
+          <%= f.hidden_field :postal_code %>
+          <%= f.hidden_field :payment_method %>
+          <br />
+          <%=f.submit "注文を確定する", class:"btn btn-success mt-3" %>
+    <% end %>
+</div>
