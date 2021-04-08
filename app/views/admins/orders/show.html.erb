@@ -47,23 +47,17 @@
             <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
-            <th>制作ステータス</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
-        <% @order.order_items.each do |order_item| %>
+        <% @order.order_details.each do |order_detail| %>
           <tr>
-            <td><%= order_item.item.name%></td>
-            <td><%= order_item.item.price%></td>
-            <td><%= order_item.item.detail%></td>
-            <% tax = 1.08 %>
-            <% subtotal = (order_item.item.price * tax * order_item.count).to_i.to_s(:delimited, delimiter: ',') %>
+            <td><%= order_detail.item.name%></td>
+            <td><%= order_detail.item.price%></td>
+            <td><%= order_detail.amount%></td>
+            <% tax = 1.1 %>
+            <% subtotal = (order_detail.item.price * tax * order_detail.amount).to_i.to_s(:delimited, delimiter: ',') %>
             <td><%= subtotal %></td>
-          <%= form_with model:[order_item.order,order_item], url: admins_order_order_detail_path(order_item.id), local:true do |f| %>
-            <td><%= f.select :making_status, [['着手不可'], ['製作待ち'], ['製作中'],['製作完了']]%></td>
-            <td><%= f.submit "更新", class: "btn btn-sm btn-success" %></td>
-          <% end %>
           </tr>
         <% end %>
         </tbody>
@@ -83,7 +77,7 @@
           </tr>
           <tr>
             <td>請求金額合計</td>
-            <td><%= @order.total_price %>円</td>
+            <td><%= @order.total_payment %>円</td>
           </tr>
         </tbody>
       </table>
