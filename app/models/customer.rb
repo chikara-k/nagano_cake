@@ -16,18 +16,10 @@ class Customer < ApplicationRecord
   validates :postal_code,       presence: true
   validates :address,           presence: true
   validates :telephone_number,  presence: true
-  validates :is_active,         presence: true
+  validates :is_active, inclusion:{in: [true, false]}
 
 
-  # def full_address
-  #   postal_code + address + first_name + last_name
-  # end
-
-  # def name
-  #   [first_name,last_name].join(' ')
-  # end
-
-  # def kana
-  #   [first_kana,last_kana].join(' ')
-  # end
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
 end

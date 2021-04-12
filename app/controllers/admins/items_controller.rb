@@ -11,7 +11,7 @@ class Admins::ItemsController < ApplicationController
         @item = Item.new(item_params)
         if @item.save
           flash[:success] = "新商品を登録しました"
-          redirect_to admins_items_path
+          redirect_to admins_item_path(@item)
         else
           @items = Item.all.page(params[:page]).per(4)
           render :new
@@ -29,7 +29,7 @@ class Admins::ItemsController < ApplicationController
       def update
         @item = Item.find(params[:id])
         if @item.update(item_params)
-          flash[:success] = "商品内容をを変更しました"
+          flash[:success] = "商品内容を変更しました"
           redirect_to admins_item_path(@item)
         else
           render :edit
@@ -38,6 +38,6 @@ class Admins::ItemsController < ApplicationController
     
       private
       def item_params
-        params.require(:item).permit(:name, :introduction, :genre_id, :is_active, :price)
+        params.require(:item).permit(:name, :introduction, :genre_id, :is_active, :price, :image)
       end
 end

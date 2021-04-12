@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     case resource
       when Admin
-        admins_items_path
+        admins_root_path
       when Customer
-        root_path
+        customer_path(current_customer.id)
     end
   end
 
@@ -18,17 +18,16 @@ class ApplicationController < ActionController::Base
     #     root_path
     # end
     if resource == :admin
-      admins_root_path
+      admins_sign_in_path
     else
       root_path
     end
   end
 
-
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana,
-      :postal_code, :address, :telephone_number, :is_deleted])
+      :postal_code, :address, :telephone_number, :is_active])
   end
 end

@@ -26,6 +26,7 @@ class CustomersController < ApplicationController
   def hide
     @cusromer = Customer.find(current_customer.id)
     @cusromer.update(is_active: false)
+    p @cusromer
     reset_session
     flash[:notice] = "退会しました。"
     redirect_to root_path
